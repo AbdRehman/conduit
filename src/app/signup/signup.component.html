@@ -1,0 +1,48 @@
+<div>
+<div class="w-50 mx-auto my-5 text-center">
+    <h2>Sign Up</h2>
+    <a href="javascript:void(0)" [routerLink]="['/login']">Have an Account</a>
+<form [formGroup]="signupForm" class="mt-5" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <fieldset class="form-group">
+            <input class="form-control" placeholder="Username" type="text" formControlName="username">
+            <div *ngIf="submitted && signupForm.controls.username.errors">
+               <div *ngIf="signupForm.controls.username.errors.required">
+                Oops, please provide a name!
+              </div>  
+              <div *ngIf="signupForm.controls.username.errors.minlength">
+                Oops, please use at least 3 characters!
+              </div>  
+            </div>              
+              <!-- {{signupForm.controls.username.errors | json}}  -->
+        </fieldset>
+        <fieldset class="form-group">
+            <input class="form-control" placeholder="Email" type="email" formControlName="email">
+            <div *ngIf="submitted && signupForm.controls.email.errors">
+                <div *ngIf="signupForm.controls.email.errors.required">
+                    Oops, please provide  email!
+                  </div>
+                  <div *ngIf="signupForm.controls.email.errors.pattern">
+                    Oops, please provide valid email!
+                  </div>
+              </div> 
+        </fieldset>
+        <fieldset class="form-group">
+            <input class="form-control" placeholder="Password" type="password" formControlName="password">
+            <div *ngIf="submitted && signupForm.controls.password.errors">
+                <div *ngIf="signupForm.controls.password.errors.required">
+                    Oops, please enter Password!
+                  </div>
+                  <div *ngIf="signupForm.controls.password.errors.pattern">
+                    Please use atleast 1 Letter,Numeric and Special Character password!
+                  </div>
+
+              </div>  
+        </fieldset>
+        <button class="btn btn-lg btn-primary pull-xs-right" type="submit"> Sign up </button>
+    </fieldset>
+</form>    
+{{signupForm.value | json}}
+{{submitted}}
+</div>
+</div>
